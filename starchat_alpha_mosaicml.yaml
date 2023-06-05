@@ -1,0 +1,20 @@
+name: starchat-alpha
+gpu_num: 8
+gpu_type: a100_40gb
+image: mosaicml/inference:latest
+cluster: r8z5
+integrations:
+  - integration_type: git_repo
+    git_repo: mosaicml/examples
+    ssh_clone: false
+model:
+  download_parameters:
+    hf_path: HuggingFaceH4/starchat-alpha
+  model_handler: starchat_mosaic_handler.StarChatModelHandler
+  model_parameters:
+    task: text-generation
+    model_dtype: fp16
+    autocast_dtype: bf16
+    model_name_or_path: HuggingFaceH4/starchat-alpha
+metadata:
+  model_version: 1
